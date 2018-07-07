@@ -2,7 +2,7 @@
 FROM openjdk:8-jdk-alpine
 
 
-# Make port 8091 available to the world outside this container
+# Make port 8080 available to the world outside this container
 EXPOSE 8080
 
 # The application's jar file
