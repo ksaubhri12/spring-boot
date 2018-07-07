@@ -2,6 +2,7 @@ package com.sapient.service;
 
 
 import com.sapient.commonUtil.RestProcessorClient;
+import com.sapient.responsebody.NewsResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class NewsService {
     private RestProcessorClient restProcessorClient ;
 
 
-    public String getNews(String country, String category) throws Exception{
+    public NewsResponseBody getNews(String country, String category) throws Exception{
         if (country == null){
             throw new Exception("null country id is not acceptable");
         }
@@ -29,7 +30,7 @@ public class NewsService {
         try {
             String url = "https://newsapi.org/v2/top-headlines";
             String finalUrl = url + "?"+ "country="+country+"&"+"category="+category+"&"+"apiKey=ccaf5d41cc5140c984818c344edcc14d";
-            String result = (String) restProcessorClient.process(finalUrl,null,null,String.class,HttpMethod.GET);
+            NewsResponseBody result = (NewsResponseBody) restProcessorClient.process(finalUrl,null,null,NewsResponseBody.class,HttpMethod.GET);
             return result;
         }
         catch (Exception e){

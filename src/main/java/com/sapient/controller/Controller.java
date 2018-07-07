@@ -1,6 +1,8 @@
 package com.sapient.controller;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.sapient.responsebody.NewsResponseBody;
 import com.sapient.service.NewsService;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,15 +20,20 @@ public class Controller {
     private NewsService newsService;
 
     @RequestMapping("/news")
-    public String getNewsString(@RequestParam Map<String, String> requestParams) {
+    public NewsResponseBody getNewsString(@RequestParam Map<String, String> requestParams) {
 
         String country = requestParams.get("country");
         String category = requestParams.get("category");
 
         try {
-            String result = newsService.getNews(country, category);
-//            JSONParser parser = new JSONParser();
-//            JSONObject jsonObject = (JSONObject) parser.parse(result);
+            NewsResponseBody result = newsService.getNews(country, category);
+            Gson gson = new Gson();
+            String json = gson.toJson(result);
+            JSONObject jsonObj = new JSONObject(json);
+            
+
+
+
             return result;
 
         } catch (Exception e) {
@@ -35,7 +42,7 @@ public class Controller {
             jsonObject.put("response", "error occured");
             jsonObject.put("message", e.getMessage());
 
-            return e.getMessage();
+            return null;
         }
 
 

@@ -59,7 +59,7 @@ public class NewsServiceTest {
         String country = "US";
         String category = "busines";
 
-        String result = newsService.getNews(country,category);
+//        String result = newsService.getNews(country,category);
 
 
     }
