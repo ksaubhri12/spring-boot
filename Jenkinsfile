@@ -6,10 +6,7 @@ node {
         echo 'kalpesh'
         checkout scm
     }
-    stage('Test Image'){
-        sh 'mvn test'
-    }
-    stage('Building Jarfile'){
+    stage('Build and test Jarfile'){
         sh 'mvn package'
     }
     stage('Create docker image'){
