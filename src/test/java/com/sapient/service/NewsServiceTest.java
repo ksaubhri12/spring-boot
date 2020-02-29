@@ -45,7 +45,7 @@ public class NewsServiceTest {
 
         NewsResponseBody result = newsService.getNews(country,category);
 
-        as
+
 
 
     }
@@ -55,6 +55,7 @@ public class NewsServiceTest {
         newsResponseBody.setStatus("ok");
         newsResponseBody.setTotalResults(20);
         newsResponseBody.setArticles(null);
+        return newsResponseBody;
     }
 
 
